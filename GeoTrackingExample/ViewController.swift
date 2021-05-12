@@ -420,7 +420,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         mapView.setCamera(camera, animated: false)
         
         
-        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 20)
+        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 50)
         let search = MKLocalSearch(request: request)
         search.start { [unowned self] (response, error) in
                 
