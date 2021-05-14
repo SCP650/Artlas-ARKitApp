@@ -71,8 +71,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         restartSession()
                 
         // Add tap gesture recognizers
-        arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnARView(_:))))
-        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnMapView(_:))))
+//        arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnARView(_:))))
+//        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnMapView(_:))))
         
         
     }
@@ -85,6 +85,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         // Start listening for location updates from Core Location
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
  
     }
     
@@ -252,7 +253,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                 return (Float.pi-radian)
 //                return Float.pi*3/4
             }else if(y_diff < 0 && x_diff > 0){
-                    return Float.pi-radian
+                    return -(Float.pi-radian)
 //                return -Float.pi*3/4
             }else if(y_diff >= 0 && x_diff <= 0){
                 return radian;
@@ -399,6 +400,11 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     func addNearByBuildingNames(){
+        arView.scene.anchors.removeAll()
+        print("Heading!!\(locationManager.heading?.trueHeading)")
+        if self.nearbyLocations.count == 0{
+            alertUser(withTitle: "No Nearby Building 😢", message: "Try to move close to the building.")
+        }
         for item in self.nearbyLocations{
             let name = item.name ?? "No name"
             let region = item.placemark.coordinate
@@ -420,7 +426,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         mapView.setCamera(camera, animated: false)
         
         
-        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 50)
+        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 100)
         let search = MKLocalSearch(request: request)
         search.start { [unowned self] (response, error) in
                 
