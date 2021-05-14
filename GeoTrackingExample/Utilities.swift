@@ -126,15 +126,15 @@ extension ARGeoTrackingStatus.StateReason {
     var description: String {
         switch self {
         case .none: return "None"
-        case .notAvailableAtLocation: return "Geotracking is unavailable here. Please return to your previous location to continue"
-        case .needLocationPermissions: return "App needs location permissions"
-        case .worldTrackingUnstable: return "Limited tracking"
-        case .geoDataNotLoaded: return "Downloading localization imagery. Please wait"
-        case .devicePointedTooLow: return "Point the camera at a nearby building"
+        case .notAvailableAtLocation: return "Geotracking is unavailable here. 😢 Please return to your previous location to continue"
+        case .needLocationPermissions: return "App needs location permissions ⛔️"
+        case .worldTrackingUnstable: return "Limited tracking 🤦🏻"
+        case .geoDataNotLoaded: return "Downloading localization imagery. Please wait 👀"
+        case .devicePointedTooLow: return "Point the camera at a nearby building 🏰"
         case .visualLocalizationFailed: return "Point the camera at a building unobstructed by trees or other objects"
-        case .waitingForLocation: return "ARKit is waiting for the system to provide a precise coordinate for the user"
-        case .waitingForAvailabilityCheck: return "ARKit is checking Location Anchor availability at your locaiton"
-        @unknown default: return "Unknown reason"
+        case .waitingForLocation: return "ARKit is waiting for the system to provide a precise coordinate for the user 🤷‍♂️"
+        case .waitingForAvailabilityCheck: return "ARKit is checking Location Anchor availability at your locaiton 😐"
+        @unknown default: return "Unknown reason 😱"
         }
     }
 }
@@ -142,11 +142,11 @@ extension ARGeoTrackingStatus.StateReason {
 extension ARGeoTrackingStatus.Accuracy {
     var description: String {
         switch self {
-        case .undetermined: return "Undetermined"
-        case .low: return "Low"
-        case .medium: return "Medium"
-        case .high: return "High"
-        @unknown default: return "Unknown"
+        case .undetermined: return "Undetermined🤔"
+        case .low: return "Low😐"
+        case .medium: return "Medium🙂"
+        case .high: return "High😃"
+        @unknown default: return "Unknown😱"
         }
     }
 }
