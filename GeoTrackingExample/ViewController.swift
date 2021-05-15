@@ -26,6 +26,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     let locationManager = CLLocationManager()
  
+    let toleranceAngle = Double(30)
+    
     var currentAnchors: [ARAnchor] {
         return arView.session.currentFrame?.anchors ?? []
     }
@@ -103,6 +105,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     @IBAction func updateNameBtnTapped(_ sender: Any) {
         print("DEBUG: Update btn tapped")
+        geoAnchors.removeAll()
+        
+        arView.scene.anchors.removeAll()
         addNearByBuildingNames()
     }
     // Responds to a user tap on the AR view.
@@ -219,7 +224,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         }
     }
     
-    func addGeoAnchor(at location: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil, name:String = "There is no name!") {
+    func addGeoAnchor(at location: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil, name:String = "There is no name!", angle:Float = 0) {
         var geoAnchor: ARGeoAnchor!
         if let altitude = altitude {
             geoAnchor = ARGeoAnchor(coordinate: location, altitude: altitude)
@@ -229,7 +234,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         addGeoAnchor(geoAnchor)
         let geoAnchorEntity = AnchorEntity(anchor: geoAnchor)
         geoAnchorEntity.addChild(generateSignEntity(name))
-        let orientiation = simd_quatf.init(angle: getOrientation(location), axis:  SIMD3<Float>(0,1,0))
+        let orientiation = simd_quatf.init(angle: angle, axis:  SIMD3<Float>(0,1,0))
         //on my left pi/2, on my right -pi/2
 //        print("\(name): \(location)")
 //        print("My location \(locationManager.location!.coordinate)")
@@ -247,13 +252,13 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         let ratio = abs(x_diff/y_diff)
         let radian = atan(ratio)
             if (y_diff > 0 && x_diff > 0 ){
-                return -radian
+                return 2*Float.pi-radian
 //                return -Float.pi/4
             }else if(y_diff < 0 && x_diff < 0){
                 return (Float.pi-radian)
 //                return Float.pi*3/4
             }else if(y_diff < 0 && x_diff > 0){
-                    return -(Float.pi-radian)
+                    return (Float.pi+radian)
 //                return -Float.pi*3/4
             }else if(y_diff >= 0 && x_diff <= 0){
                 return radian;
@@ -398,17 +403,36 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             return
         }
     }
+    func correctAngle(facing:Double, angle:Double) -> Bool{
+        let diff = abs( facing - angle )
+        let smallerDiff = min(diff, 360-diff)
+        if smallerDiff > toleranceAngle{
+            return false
+        }
+        return true
+    }
     
     func addNearByBuildingNames(){
-        arView.scene.anchors.removeAll()
-        print("Heading!!\(locationManager.heading?.trueHeading)")
+       
         if self.nearbyLocations.count == 0{
             alertUser(withTitle: "No Nearby Building 😢", message: "Try to move close to the building.")
         }
+        print(nearbyLocations.count)
         for item in self.nearbyLocations{
             let name = item.name ?? "No name"
             let region = item.placemark.coordinate
-            addGeoAnchor(at: region, name: name)
+            let rand = getOrientation(region)
+            let angle = 360 - Double(rand) * 180 / .pi
+            let facing = locationManager.heading?.trueHeading ?? 0.0
+//          print("Facing \(facing), Build \(angle), \(name)")
+//            addGeoAnchor(at: region, name: name,angle: rand)
+            if  correctAngle(facing: facing, angle: angle) {
+                addGeoAnchor(at: region, name: name,angle: rand)
+//                alertUser(withTitle: "Facing \(facing), Build \(angle)", message: "\(name)")
+//                print("Added \(item.name)")
+                return
+            }
+           
             
         }
     }
@@ -427,6 +451,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         
         let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 100)
+//        request.pointOfInterestFilter = MKPointOfInterestFilter(including: <#T##[MKPointOfInterestCategory]#>)//don't have a way to exclude street names : (
         let search = MKLocalSearch(request: request)
         search.start { [unowned self] (response, error) in
                 
