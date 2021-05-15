@@ -414,10 +414,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     func addNearByBuildingNames(){
        
-        if self.nearbyLocations.count == 0{
-            alertUser(withTitle: "No Nearby Building 😢", message: "Try to move close to the building.")
-        }
-        print(nearbyLocations.count)
+//        if self.nearbyLocations.count == 0{
+//            alertUser(withTitle: "No Nearby Building 😢", message: "Try to move close to the building.")
+//        }
+//        print(nearbyLocations.count)
         for item in self.nearbyLocations{
             let name = item.name ?? "No name"
             let region = item.placemark.coordinate
@@ -433,8 +433,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                 return
             }
            
-            
         }
+        alertUser(withTitle: "No Nearby Building😢", message: "Move to closer to the building!🚶‍♂️")
     }
     
     // MARK: - CLLocationManagerDelegate
@@ -450,7 +450,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         mapView.setCamera(camera, animated: false)
         
         
-        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 100)
+        let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 500)
 //        request.pointOfInterestFilter = MKPointOfInterestFilter(including: <#T##[MKPointOfInterestCategory]#>)//don't have a way to exclude street names : (
         let search = MKLocalSearch(request: request)
         search.start { [unowned self] (response, error) in
