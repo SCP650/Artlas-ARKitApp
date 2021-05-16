@@ -1,0 +1,5 @@
+# Pravicy Policy
+
+We do NOT store your data.  
+
+We physically can't. We have nowhere to store it. We didn't even set up a server. So even if Mark Zuckerberg asked nicely to see your data, we wouldn't have anything to show.
