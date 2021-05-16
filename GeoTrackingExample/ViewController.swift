@@ -21,7 +21,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     @IBOutlet weak var trackingStateLabel: UILabel!
  
     let coachingOverlayWorldTracking = ARCoachingOverlayView()
-    let arrayOfColors = [UIColor.blue,UIColor.red,UIColor.lightGray,UIColor.green, UIColor.systemPink, UIColor.brown, UIColor.cyan, UIColor.yellow]
+//    let arrayOfColors = [UIColor.blue,UIColor.red,UIColor.lightGray,UIColor.green, UIColor.systemPink, UIColor.brown, UIColor.cyan, UIColor.yellow]
+    let arrayOfColors = [UIColor(red: 0, green: 253/255, blue: 255/255, alpha: 1),UIColor(red: 8/255, green: 255/255, blue: 8/255, alpha: 1),UIColor(red: 255/255, green: 207/255, blue: 0, alpha: 1 ),UIColor(red: 254/255, green: 20/255, blue: 147/255, alpha: 1 ),UIColor(red: 255/255, green: 85/255, blue: 85/255, alpha: 1),UIColor(red: 204/255, green: 255/255, blue: 2/255, alpha: 1),UIColor.blue,UIColor.red,UIColor.lightGray,UIColor.green, UIColor.systemPink, UIColor.brown, UIColor.yellow, UIColor.white]
     var geoCoachingController: GeoCoachingViewController!
     
     let locationManager = CLLocationManager()
@@ -104,7 +105,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     @IBAction func updateNameBtnTapped(_ sender: Any) {
-        print("DEBUG: Update btn tapped")
+     
         geoAnchors.removeAll()
         
         arView.scene.anchors.removeAll()
@@ -285,8 +286,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
                              lineBreakMode: .byCharWrapping)
        let entity = ModelEntity(mesh: mesh)
         var mat = SimpleMaterial()
-        mat.baseColor = MaterialColorParameter.color(arrayOfColors.randomElement() ?? UIColor.red)
-        mat.metallic = 1
+        mat.baseColor = MaterialColorParameter.color(arrayOfColors.randomElement() ?? UIColor.white)
         
         entity.model?.materials = [mat]
         entity.setPosition([entity.scale.x/2,0,0], relativeTo: entity)
