@@ -14,7 +14,7 @@ import Photos
 class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet var arView: ARView!
-    @IBOutlet weak var mapView: MKMapView!
+//    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var toastLabel: UILabel!
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
@@ -124,12 +124,12 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     // Responds to a user tap on the map view.
-    @objc
-    func handleTapOnMapView(_ sender: UITapGestureRecognizer) {
-        let point = sender.location(in: mapView)
-        let location = mapView.convert(point, toCoordinateFrom: mapView)
-        addGeoAnchor(at: location)
-    }
+//    @objc
+//    func handleTapOnMapView(_ sender: UITapGestureRecognizer) {
+//        let point = sender.location(in: mapView)
+//        let location = mapView.convert(point, toCoordinateFrom: mapView)
+//        addGeoAnchor(at: location)
+//    }
     
     // Removes the most recent geo anchor.
     @IBAction func undoButtonTapped(_ sender: Any) {
@@ -142,7 +142,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         arView.session.remove(anchor: lastGeoAnchor.geoAnchor)
         
         // Remove map overlay
-        mapView.removeOverlay(lastGeoAnchor.mapOverlay)
+//        mapView.removeOverlay(lastGeoAnchor.mapOverlay)
         
         // Remove the element from the collection.
         geoAnchors.removeLast()

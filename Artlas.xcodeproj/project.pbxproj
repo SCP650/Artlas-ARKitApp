@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E16665F023F6986F001B415F /* GeoTrackingExample */ = {
+		E16665F023F6986F001B415F /* Artlas */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E166660523F69870001B415F /* Build configuration list for PBXNativeTarget "GeoTrackingExample" */;
+			buildConfigurationList = E166660523F69870001B415F /* Build configuration list for PBXNativeTarget "Artlas" */;
 			buildPhases = (
 				E16665ED23F6986F001B415F /* Sources */,
 				E16665EE23F6986F001B415F /* Frameworks */,
@@ -130,7 +130,7 @@
 			);
 			dependencies = (
 			);
-			name = GeoTrackingExample;
+			name = Artlas;
 			productName = GeoTrackingDemo;
 			productReference = E16665F123F6986F001B415F /* GeoTrackingExample.app */;
 			productType = "com.apple.product-type.application";
@@ -151,7 +151,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E16665EC23F6986F001B415F /* Build configuration list for PBXProject "GeoTrackingExample" */;
+			buildConfigurationList = E16665EC23F6986F001B415F /* Build configuration list for PBXProject "Artlas" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -164,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E16665F023F6986F001B415F /* GeoTrackingExample */,
+				E16665F023F6986F001B415F /* Artlas */,
 			);
 		};
 /* End PBXProject section */
@@ -391,7 +391,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E16665EC23F6986F001B415F /* Build configuration list for PBXProject "GeoTrackingExample" */ = {
+		E16665EC23F6986F001B415F /* Build configuration list for PBXProject "Artlas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E166660323F69870001B415F /* Debug */,
@@ -400,7 +400,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E166660523F69870001B415F /* Build configuration list for PBXNativeTarget "GeoTrackingExample" */ = {
+		E166660523F69870001B415F /* Build configuration list for PBXNativeTarget "Artlas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E166660623F69870001B415F /* Debug */,
