@@ -64,7 +64,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         locationManager.delegate = self
         
         // Set this view controller as the MKMapView delegate.
-        mapView.delegate = self
+//        mapView.delegate = self
         
         // Disable automatic configuration and set up geotracking
         arView.automaticallyConfigureSession = false
@@ -206,9 +206,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         trackingStateLabel.text = ""
         
-        // Remove all anchor overlays from the map view
-        let anchorOverlays = mapView.overlays.filter { $0 is AnchorIndicator }
-        mapView.removeOverlays(anchorOverlays)
+//        // Remove all anchor overlays from the map view
+//        let anchorOverlays = mapView.overlays.filter { $0 is AnchorIndicator }
+//        mapView.removeOverlays(anchorOverlays)
         
         showToast("Running new AR session")
     }
@@ -338,7 +338,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             }
             // Add a visualization for the geo anchor in the map view.
             let anchorIndicator = AnchorIndicator(center: geoAnchor.coordinate)
-            self.mapView.addOverlay(anchorIndicator)
+//            self.mapView.addOverlay(anchorIndicator)
 
             // Remember the geo anchor we just added
             let anchorInfo = GeoAnchorWithAssociatedData(geoAnchor: geoAnchor, mapOverlay: anchorIndicator)
@@ -440,14 +440,14 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Update location indicator with live estimate from Core Location
-        guard let location = locations.last else { return }
+//        guard let location = locations.last else { return }
         
-        // Update map area
-        let camera = MKMapCamera(lookingAtCenter: location.coordinate,
-                                 fromDistance: CLLocationDistance(250),
-                                 pitch: 0,
-                                 heading: mapView.camera.heading)
-        mapView.setCamera(camera, animated: false)
+//        // Update map area
+//        let camera = MKMapCamera(lookingAtCenter: location.coordinate,
+//                                 fromDistance: CLLocationDistance(250),
+//                                 pitch: 0,
+//                                 heading: mapView.camera.heading)
+//        mapView.setCamera(camera, animated: false)
         
         
         let request = MKLocalPointsOfInterestRequest(center: locationManager.location!.coordinate, radius: 500)
@@ -464,14 +464,14 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     
     // MARK: - MKMapViewDelegate
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let anchorOverlay = overlay as? AnchorIndicator {
-            let anchorOverlayView = MKCircleRenderer(circle: anchorOverlay)
-            anchorOverlayView.strokeColor = .white
-            anchorOverlayView.fillColor = .blue
-            anchorOverlayView.lineWidth = 2
-            return anchorOverlayView
-        }
-        return MKOverlayRenderer()
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        if let anchorOverlay = overlay as? AnchorIndicator {
+//            let anchorOverlayView = MKCircleRenderer(circle: anchorOverlay)
+//            anchorOverlayView.strokeColor = .white
+//            anchorOverlayView.fillColor = .blue
+//            anchorOverlayView.lineWidth = 2
+//            return anchorOverlayView
+//        }
+//        return MKOverlayRenderer()
+//    }
 }

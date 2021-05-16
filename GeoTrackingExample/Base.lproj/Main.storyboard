@@ -20,15 +20,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peZ-tj-t0u">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="627"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </arView>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-BJ-4C0">
-                                        <rect key="frame" x="0.0" y="627" width="414" height="269"/>
-                                    </mapView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="peZ-tj-t0u" firstAttribute="height" secondItem="c3H-r6-GWH" secondAttribute="height" multiplier="0.7" id="yu9-jr-G1S"/>
-                                </constraints>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1i-Id-pgz">
                                 <rect key="frame" x="132" y="836" width="150" height="40"/>
@@ -119,7 +113,6 @@
                     </view>
                     <connections>
                         <outlet property="arView" destination="peZ-tj-t0u" id="baz-5w-chB"/>
-                        <outlet property="mapView" destination="7Ka-BJ-4C0" id="lQP-cz-rmW"/>
                         <outlet property="toastLabel" destination="ak3-Cx-CrA" id="GsG-XM-Qqx"/>
                         <outlet property="trackingStateLabel" destination="j8v-dI-hzq" id="R0I-Zc-B6p"/>
                     </connections>

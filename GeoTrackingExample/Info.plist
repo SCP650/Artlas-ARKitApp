@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Atlas</string>
+	<string>Artlas</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -38,11 +38,11 @@
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Used for Augmented Reality.</string>
+	<string>We need it to show Augmented Reality building names</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Used for Location Anchors.</string>
+	<string>Used for finding nearby buildings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used for Location Anchors.</string>
+	<string>Used for finding nearby buildings.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
